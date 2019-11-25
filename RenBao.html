@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>		
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+		
+		<title></title>
+		<script type="text/javascript">
+			(function flexible (window, document) {
+  var docEl = document.documentElement
+  var dpr = window.devicePixelRatio || 1
+
+  // adjust body font size
+  function setBodyFontSize () {
+    if (document.body) {
+      document.body.style.fontSize = (12 * dpr) + 'px'
+    }
+    else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize)
+    }
+  }
+  setBodyFontSize();
+
+  // set 1rem = viewWidth / 10
+  function setRemUnit () {
+    var rem = docEl.clientWidth / 10
+    docEl.style.fontSize = rem + 'px'
+  }
+
+  setRemUnit()
+
+  // reset rem unit on page resize
+  window.addEventListener('resize', setRemUnit)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      setRemUnit()
+    }
+  })
+
+  // detect 0.5px supports
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body')
+    var testElement = document.createElement('div')
+    testElement.style.border = '.5px solid transparent'
+    fakeBody.appendChild(testElement)
+    docEl.appendChild(fakeBody)
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines')
+    }
+    docEl.removeChild(fakeBody)
+  }
+}(window, document))
+		</script>
+
+	</head>
+	<style>
+		* {
+	padding: 0;
+	margin: 0;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+body {
+	background: #333;
+}
+
+#lt_info {
+	width: 100%;
+	background-color: white;
+	margin-right: 5px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	padding: 15px 10px 5px 10px;
+	position: relative;
+}
+
+.container {
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+	height: 100%;
+	/*max-width: 640px;*/
+	background-color: white;
+	margin: 0 auto;
+}
+
+.margin_0 {
+	margin: 0!important;
+}
+
+.nav_box {
+	font-size: 10px!important;
+	border-bottom: 2px solid rgba(242, 242, 242, 1);
+	border-top: 2px solid rgba(242, 242, 242, 1);
+}
+
+ul {
+	margin: 0;
+}
+
+.nav_box ul {
+	margin: 0;
+}
+
+#myTab li {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.nav_box .nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+	color: #337ab7;
+	background-color: #fff;
+	border-bottom: 0;
+	text-decoration: none;
+}
+.nav-pills>li.active>a::after{
+content:"";
+display:block;
+width: 50%;
+height:1px;
+background:#337ab7;
+transform:scaleY(1);//纵向伸缩
+float:left;
+margin-top: 5px;
+margin-left: 25%;
+}
+.nav_box .nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover .ww {
+	/*border-bottom: 1px solid #337ab7;*/
+}
+
+.nav_box a {
+	color: #000000;
+	border: 0;
+	padding: 10px 13px!important;
+}
+
+.fixednav {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 1;
+	background: white;
+	margin: 0;
+}
+
+.seceond_box {
+	width: 100%;
+	height: auto;
+	background: red;
+}
+
+.x_box {
+	display: inline-block;
+	border: 0;
+	width: 32%;
+	border-radius: 4px;
+	background: white;
+	color: #337ab7;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	font-size: 14px;
+	overflow: scroll;
+	/*box-shadow: 0px 0px 5px #888888;*/
+	box-shadow: 0px 3px 8px -2px #5E5E5E;  
+	overflow: hidden;
+	margin: 0.08rem;
+	transition: all .3s;
+}
+.top_imgbox {
+			width: 100%;
+			height: auto;
+			background-color: #0075a9;
+		}
+.x_box a {
+	color: #000000;
+	padding: 0.5rem 0.9rem;
+}
+
+.small_btn {
+	box-shadow: 0px 0px 5px #888888;
+	width: 20%;
+	border-radius: 4px;
+	background: white;
+	color: #337ab7;
+	height: 0.7rem;
+	line-height: 0.5rem;
+	font-size: 12px;
+	border: 0;
+}
+
+.active_btn {
+	background: rgb(49, 144, 236);
+	color: white!important;
+}
+
+.FangA .l_p {
+	width: 30%;
+	display: inline-block;
+	font-size: 12px;
+	color: #5D5C5C;
+}
+
+.FangA .r_p {
+	width: 60%;
+	display: inline-block;
+	font-size: 12px;
+	color: #5D5C5C;
+	text-align: right;
+}
+
+.FangA .r_p span {
+	text-align: left;
+	width: 80%;
+}
+
+.FangA {
+	margin-top: 25px;
+}
+
+.FangA li {
+	list-style-type: none;
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+}
+
+.FangA li:last-child {
+	border-bottom: 1px dashed #444444;
+	height: 50px;
+}
+
+.Moneys {
+	text-align: right;
+	border-bottom: 1px solid #3399ea;
+	color: #3399ea;
+	font-size: 24px;
+	height: 1rem;
+	margin-top: 10px;
+}
+
+.Moneys span {
+	color: #5D5C5C;
+	font-size: 10px;
+}
+
+.F_money {
+	background-color: rgb(242, 242, 242);
+	height: auto!important;
+}
+
+.xiangq {
+	font-size: 12px;
+	margin: 8px 0px;
+}
+
+.xiangq a {
+	color: #3399ea;
+}
+
+.actives {
+	background: rgb(49, 144, 236);
+	color: white;
+}
+
+.two_title {
+	font-size: 12px;
+	height: 1rem;
+	line-height: 1rem;
+	color: #999;
+	line-height: 1rem;
+	border-bottom: 2px solid #EFEFEF;
+}
+.two_title a{
+	color: #999;
+}
+.Question {
+	width: 100%;
+	height: auto;
+	font-size: 14px;
+}
+
+.Question li {
+	list-style-type: none;
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	font-size: 12px;
+}
+
+.Question li:last-child {
+	margin-bottom: 20px;
+}
+
+.Question li:nth-child(odd) {
+	color: #3399ea;
+	font-size: 14px;
+}
+
+.anli li {
+	margin-top: 10px!important;
+}
+
+.end {
+	text-align: center;
+	height: 1rem;
+	font-size: 10px;
+	background-color: rgb(242, 242, 242);
+	line-height: 1rem;
+	margin-bottom: 0;
+}
+
+.call {
+	position: relative;
+	height: 1.3rem;
+	color: white;
+	display: inline-block;
+	background: rgba(0, 113, 227, 0.68);
+	width: 65%;
+	padding: 0;
+	text-align: center;
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.3rem;
+	float: left;
+}
+
+.endmoney {
+	height: 1.3rem;
+	display: inline-block;
+	background: white;
+	color: rgba(0, 113, 227, 0.68);
+	width: 35%;
+	line-height: 1.3rem;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	font-size: 24px;
+	float: left;
+}
+
+.big {
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	right: 25px;
+	top: 0.6rem;
+	color: white;
+	border-left: 2px solid white;
+	border-bottom: 2px solid white;
+	-webkit-transform: translate(0, -50%) rotate(-135deg);
+	transform: translate(0, -50%) rotate(-135deg);
+}
+
+.nav-pills>li+li {
+	margin-left: 0!important;
+	text-align: center;
+}
+
+.nav-pills>li:first-child {
+	text-align: center;
+}
+.sanjiao{
+	position: absolute;
+	top: 0px;
+	left: 13%;
+			width: 0px;
+            height: 0px;
+            border: 0.18rem solid #666;
+            border-left-color:transparent;
+            border-right-color:transparent;
+            border-bottom-color:transparent;
+            border-top-color:skyblue;
+}
+.cx_mask_transparent{
+	/*font-size: 14px!important;*/
+}
+.target-fix {
+    position: relative;
+    top: -42px; /*偏移值*/
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.top-lr-scatter{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:-o-flex;display:flex;-webkit-justify-content:space-between;-moz-justify-content:space-between;-ms-justify-content:space-between;-o-justify-content:space-between;justify-content:space-between;line-height:1.4;}
+	.center-lr-scatter{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:-o-flex;display:flex;-webkit-justify-content:space-between;-moz-justify-content:space-between;-ms-justify-content:space-between;-o-justify-content:space-between;justify-content:space-between;line-height:1.4;align-items:center;align-content:center;}
+	</style>
+
+	<body id="bodyBox">
+
+		<div class="container" id="app" style="padding: 0;">
+			<!--照片盒子-->
+			<div class="top_imgbox">
+				<img src="http://g.subaotec.com/ressources/img/group/picc_gz_wx_1.png" width="100%" />
+				
+			</div>
+			<!--导航盒子-->
+			<div class="nav_box margin_0">
+				<div class="row" id="navs">
+					<ul class="nav nav-pills wrap">
+						
+						<li class="active col-xs-4 col-sm-4">
+							<a href="#BZ_plan"><span class="ww">保障计划</span></a>
+						</li>
+						<li class=" col-xs-4 col-sm-4">
+							<a href="#home">
+								<span>商品详情</span>
+							</a>
+						</li>
+						<li class=" col-xs-4 col-sm-4">
+							<a href="#FW_xq"><span>服务详情</span></a>
+						</li>
+					</ul>
+				</div>		
+			</div>
+			
+			<!--方案-->
+			<div>
+				<a name="BZ_plan" class="target-fix"></a>
+				<div id="lt_info">
+					<button class="x_box " v-for="(item,index) in totalItems" @click="chooseFa(index)" :class="{ actives:index==current}">
+			{{item.name}}
+		</button>
+				</div>
+				<div class="container center-lr-scatter" style="padding: 15px 5px 5px 5px;position: relative;">
+					<div class="sanjiao"></div>
+					<button class="small_btn " v-for="(item,index) in sites" @click="chooseSon(index)" :class="{ active_btn:index==current2}">{{item.name}}</button>
+				</div>
+			</div>
+			<!--方案内容-->
+			<div class="container" style="height: auto;">
+				<ul class=" FangA">
+					<li class=" top-lr-scatter">
+						<p class="l_p">具体行业鉴别</p>
+						<p class="r_p"><span>{{types.listIndustry[this.current2].industry}}</span></p>
+					</li>
+					<li class=" top-lr-scatter" v-for="(item,index) in types.list">
+						<p class="l_p">{{item.name}}</p>
+						<p class="r_p"><span>{{item.value}}</span></p>
+					</li>
+				</ul>
+
+			</div>
+			<!--费用钱数-->
+			<div class="container F_money">
+				<p class="Moneys">{{all_money}}.00&nbsp;<span>元/年</span></p>
+				<p class="xiangq">更多详情参见&nbsp;<span><a href="http://g.subaotec.com/document/upload/employer/picc_wx_gz_clause_2.pdf" download="特别约定.pdf">《特别约定》</a>,
+						<a href="http://g.subaotec.com/document/upload/employer/picc_wx_gz_clause_1.pdf" download="雇主责任保险条款A款.pdf">《雇主责任保险条约（A款）》</a>
+					</span></p>
+			</div>
+			<div class="seceond_box" id="twoimg_Box">
+				<a name="home" class="target-fix"></a>
+				<img src="http://g.subaotec.com/ressources/img/group/picc_gz_wx_2.png" width="100%"/>			
+			</div>
+			<p class="two_title"><span style="margin-left: 10px;">&nbsp;</span>
+			常见问题<a name='FW_xq' class="target-fix" style="top: -70px;"></a>
+			</p>
+			<div class="container" style="height: auto;border-bottom: 2px solid #EFEFEF;">
+				<ul class="Question">
+					<li>Q：人员年龄限制是多少</li>
+					<li>A：本方案承保雇员年龄为16-65周岁，超过65周岁的人不承保。</li>
+					<li>Q: 在列明的行业里都没有行业是否可以承保？</li>
+					<li>A: 方案中没列明的行业，如需要投保，请咨询客服人员，确认同意后可以承保。</li>
+					<li>Q: 职业病保障吗？</li>
+					<li>A：本保险不予承保职业病。</li>
+					<li>Q: 员工工作中发生猝死，能赔吗？</li>
+					<li>A: 猝死不在本保险的保障范围内。</li>
+					<li>Q: 同一方案里，文员和工人的保费是一样的吗？</li>
+					<li>A: 本保险不区分报价，相同行业里的所有人员保费金额相同。</li>
+				</ul>
+			</div>
+			<p class="two_title"><span style="margin-left: 10px;">&nbsp;</span>投保案例</p>
+			<div class="container" style="height: auto;border-bottom: 2px solid #EFEFEF;height: auto;">
+				<ul class="Question anli">
+					<li>真实案例</li>
+					<li>A: A公司今年8月购买了一份雇主责任保险，保障方案是死亡/伤残限额60万+医疗费用6万+误工费120元/天。上个月，车间一名工人在搬运货物时手指被砸伤导致骨折，经劳动部门鉴定达到伤残十级。事故发生后A公司主动向中国人保报案，并按要求提交了索赔单据。中国人保理赔人员经审核资料认定保单责任成立，依据保单约定赔偿了A公司伤残保险金6万元整。</li>
+				</ul>
+			</div>
+			<p class="end">本保险由中国人民财产保险股份有限公司承保并负责理赔</p>
+			<div style="position: relative;">
+				<div class="endmoney">{{all_money}}.00</div>
+				<div class="call" id="calls">拨打电话,联系我们</div>
+				<div class="big"></div>
+			</div>
+		</div>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+				
+					ones: "",
+					secoend: "船舶制造",
+					types: {
+						listIndustry: [{
+							price: "330元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "330元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "510元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "270元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "30万"
+						}, {
+							name: "工伤医疗",
+							value: "3万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+					all_money: '18',
+					current: 0,
+					current2: 0,
+					totalItems: [{
+							name: '方案1'
+						},
+						{
+							name: '方案2'
+						},
+						{
+							name: '方案3'
+						},
+						{
+							name: '方案4'
+						},
+						{
+							name: '方案5'
+						},
+					],
+					sites: [{
+							name: '船舶制造'
+						},
+						{
+							name: '制造安装'
+						},
+						{
+							name: '建筑行业'
+						},
+						{
+							name: '一般行业'
+						},
+					],
+					plan_0: {
+						listIndustry: [{
+							price: "330元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "330元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "510元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "270元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "30万"
+						}, {
+							name: "工伤医疗",
+							value: "3万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+					plan_1: {
+						listIndustry: [{
+							price: "550元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "550元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "850元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "450元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "50万"
+						}, {
+							name: "工伤医疗",
+							value: "5万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+					plan_2: {
+						listIndustry: [{
+							price: "660元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "660元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "1020元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "540元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "60万"
+						}, {
+							name: "工伤医疗",
+							value: "6万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+					plan_3: {
+						listIndustry: [{
+							price: "880元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "880元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "1360元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "720元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "80万"
+						}, {
+							name: "工伤医疗",
+							value: "8万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+					plan_4: {
+						listIndustry: [{
+							price: "1100元/年",
+							name: "船舶修造",
+							industry: "船舶修造行业"
+						}, {
+							price: "1100元/年",
+							name: "制造安装",
+							industry: "电梯/装潢业/木材加工/电线电缆/空调安装/机械制造/设备安装/塑胶业/汽车制造/金属制品（钢丝绳除外）"
+						}, {
+							price: "1700元/年",
+							name: "建筑行业",
+							industry: "土木工程、钢结构"
+						}, {
+							price: "900元/年",
+							name: "一般行业",
+							industry: "家具制造维修/纺织/服装/电子业/食品饮料/服务业/一般企事业"
+						}],
+						list: [{
+							name: "工伤死亡、伤残",
+							value: "100万"
+						}, {
+							name: "工伤医疗",
+							value: "10万"
+						}, {
+							name: "误工费",
+							value: "120元/天"
+						}]
+					},
+
+				},
+				methods: {
+					chooseFa(msg) {
+						this.ones = this.totalItems[msg].name;
+						this.current = msg;
+						this.types = this["plan_" + msg];
+						this.all_money = this.types.listIndustry[this.current2].price;
+						this.all_money = this.all_money.slice(0, this.all_money.length - 3)
+//						console.log(this.types.listIndustry[this.current2].industry)
+					},
+					chooseSon(msg) {
+						this.secoend = this.sites[msg].name
+						this.current2 = msg;
+//						this.types = this["plan_" + msg];
+						this.all_money = this.types.listIndustry[this.current2].price;
+						this.all_money = this.all_money.slice(0, this.all_money.length - 3)
+						var c = document.getElementsByClassName('sanjiao')[0];
+						switch(msg) {
+							case 0:
+								c.setAttribute('style', 'left: 13%')
+								break;
+							case 1:
+								c.setAttribute('style', 'left: 37%')
+								break;
+							case 2:
+								c.setAttribute('style', 'left: 60%')
+								break;
+							case 3:
+								c.setAttribute('style', 'left: 84%;')
+								break;
+						}
+					}
+				}
+			})
+		</script>
+		<script>
+			(function() {
+				let box = document.getElementById('bodyBox');
+				let navTop = document.getElementById('navs');
+				var h_num2 = document.getElementById("navs").offsetTop;
+				box.addEventListener("touchmove", (e) => {
+					var h_num = document.getElementById("twoimg_Box").getBoundingClientRect().top;
+					//			console.log(h_num)
+					//			console.log(navTop.getBoundingClientRect().top)
+					if(navTop.getBoundingClientRect().top < 375) {
+						navTop.classList.add("fixednav");
+					}
+					if(h_num > 375 && navTop.getBoundingClientRect().top == 0) {
+						navTop.classList.remove("fixednav");
+					}
+				})
+			})();
+			$(".wrap li").click(function() {
+				$(this).siblings('li').removeClass('active');
+				$(this).addClass('active');
+				$('#navs').addClass('fixednav');
+			});
+
+			$('#calls').on('click', function() {
+				window.location.href="contact.html" 
+				//下面是弹出框暂且不用
+//				var html = "<label>姓名：<input class='confirm_input' placeholder='请输入' required='required'></label>";
+//				popTipShow.confirm('弹窗标题', html, ['确 定', '取 消'],
+//					function(e) {
+//						//callback 处理按钮事件
+//						var button = $(e.target).attr('class');
+//						if(button == 'ok') {
+//							if(null == $(".confirm_input").val() || "" == $(".confirm_input").val()) {
+//								webToast("姓名不能为空！", "top", 3000);
+//								return;
+//							}
+//
+//							//				this.hide();
+//							//				setTimeout(function() {
+//							//					webToast($(".confirm_input").val(),"bottom", 3000);
+//							//				}, 300);
+//							//				
+//							//按下确定按钮执行的操作
+//							//todo ....								
+//						}
+//
+//						if(button == 'cancel') {
+//							//按下取消按钮执行的操作
+//							//todo ....
+//							this.hide();
+//
+//						}
+//					}
+//				);
+			});
+		</script>
+	</body>
+
+</html>

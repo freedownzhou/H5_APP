@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js">
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>		
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+		<!--<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/vue2.2.2.js"></script>
+		<script type="text/javascript" src="js/alertPopShow.js"></script>
+		<link rel="stylesheet" href="css/common.css" />-->
+		<title></title>
+		<script type="text/javascript">
+			(function flexible (window, document) {
+  var docEl = document.documentElement
+  var dpr = window.devicePixelRatio || 1
+
+  // adjust body font size
+  function setBodyFontSize () {
+    if (document.body) {
+      document.body.style.fontSize = (12 * dpr) + 'px'
+    }
+    else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize)
+    }
+  }
+  setBodyFontSize();
+
+  // set 1rem = viewWidth / 10
+  function setRemUnit () {
+    var rem = docEl.clientWidth / 10
+    docEl.style.fontSize = rem + 'px'
+  }
+
+  setRemUnit()
+
+  // reset rem unit on page resize
+  window.addEventListener('resize', setRemUnit)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      setRemUnit()
+    }
+  })
+
+  // detect 0.5px supports
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body')
+    var testElement = document.createElement('div')
+    testElement.style.border = '.5px solid transparent'
+    fakeBody.appendChild(testElement)
+    docEl.appendChild(fakeBody)
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines')
+    }
+    docEl.removeChild(fakeBody)
+  }
+}(window, document))
+		</script>
+
+	</head>
+	<style>
+		.center_p{
+			font-family: SourceHanSansSC;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgb(16, 16, 16);
+    font-style: normal;
+    letter-spacing: 0px;
+    line-height: 27px;
+    text-decoration: none;
+    text-align: center;
+    margin-top:3rem ;
+    margin-bottom: 2.5rem;
+		}
+		.left_box{
+			float: left;
+			width: 50%;
+			padding: 15px;
+			font-size: 14px;
+			font-family: SourceHanSansSC;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(16, 16, 16, 0.78);
+    font-style: normal;
+    letter-spacing: 0px;
+    line-height: 24px;
+    text-decoration: none;
+    height: 5rem;
+		}
+		.box_one p{
+			text-align: right;
+			margin-bottom: 20px;
+			margin-top: 10px;
+					}
+	</style>
+	<body>
+
+		<div class="container"style="padding: 0;">
+			<p class="center_p">业务联系人</p>
+			<div class="left_box box_one">
+				<p>唐经理</p>
+				<p>13033060504</p>
+			</div>
+				<div class="left_box">
+					<img src="http://g.subaotec.com/ressources/img/static/wechat/syy_wechat_qr.jpg" draggable="false" style="display: block; height: auto;" width="100%">
+				</div>
+					<div class="left_box"><img src="http://g.subaotec.com/ressources/img/static/wechat/tc_wechat_qr.jpg" draggable="false" width="100%" style="display: block; height: auto;"></div>
+						<div class="left_box" style="vertical-align:bottom;display:table-cell;position: relative;">
+							<span style="position: absolute;left: 15px;bottom: 64px;">盛经理</span>
+				<span style="position: absolute;left: 15px;bottom: 20px;">13917544647</span>
+						</div>
+			</div>
+	
+	</body>
+
+</html>
